@@ -13,8 +13,8 @@ class DeviceDetailRepository:
         self.db.commit()
         return device_detail
     
-    def get_device_detail_by_device_id(self, device_id):
-        return self.db.query(DeviceDetailEntity).filter(DeviceDetailEntity.device_id == device_id).first()
+    def get_device_detail_by_id(self, id):
+        return self.db.query(DeviceDetailEntity).filter(DeviceDetailEntity.id == id).first()
 
     def update_device_detail(self, id, device_detail): 
         query = self.db.query(DeviceDetailEntity).filter(DeviceDetailEntity.id == id)

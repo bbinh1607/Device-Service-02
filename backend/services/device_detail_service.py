@@ -1,5 +1,5 @@
 from backend.utils.response.response_helper import pager
-from device_service.backend.repository.device_detail_repository import DeviceDetailRepository
+from backend.repository.device_detail_repository import DeviceDetailRepository
 from backend.schema.device_detail.device_detail_create_schema import DeviceDetailCreateSchema
 from backend.schema.device_detail.device_detail_reponse import DeviceDetailResponse
 from backend.schema.device_detail.device_detail_update_schema import DeviceDetailUpdateSchema

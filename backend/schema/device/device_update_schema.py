@@ -1,6 +1,6 @@
 from marshmallow import Schema, fields, post_load
 from backend.schema.__base_schema import BaseSchema
-from backend.entity.device_entity import DeviceEntity
+from backend.repository.device_repository import DeviceRepository
 
 
 class DeviceUpdateSchema(BaseSchema):
@@ -15,7 +15,25 @@ class DeviceUpdateSchema(BaseSchema):
         
     @post_load
     def to_device_entity(self, data, **kwargs):
-        try:
-            return DeviceEntity(**data)
-        except TypeError as e:
-            raise ValueError(f"Error converting data to DeviceEntity: {e}")
+        return data
+            # device_id = self.context.get('id')
+            # # Lấy thông tin device từ repository
+            # device_entity = DeviceRepository().get_device_by_id(device_id)
+            
+            # if device_entity is None:
+            #     raise ValueError(f"Device with ID {device_id} not found.")
+            # print("data", data)
+            # # Cập nhật các trường trong device_entity với các giá trị từ data
+            # for field, value in data.items():  # Duyệt qua 'data.items()'
+            #     if value is not None:  # Nếu giá trị không phải null
+            #         setattr(device_entity, field, value)  # Cập nhật giá trị
+
+            # # Trả về dictionary của device_entity thay vì entity
+            # device_dict = {field: getattr(device_entity, field) for field in data.keys()}  # Chỉ trả về các trường trong data
+
+            # print("Updated device as dictionary:", device_dict)
+            # return device_dict  # Trả về dictionary của device_entity chỉ chứa các trường đã cập nhật
+            
+    
+
+ 

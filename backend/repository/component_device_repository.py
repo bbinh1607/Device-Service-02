@@ -19,14 +19,14 @@ class ComponentDeviceRepository:
         """Lấy chi tiết của component_device theo ID."""
         return self.db.query(ComponentDeviceEntity).filter(ComponentDeviceEntity.id == id).first()
 
-    def get_all_component_detail(self, component_id=None, device_detail_id=None,):
-        """Lấy danh sách tất cả component_device với phân trang và các tham số tùy chọn như component_id, device_detail_id."""
+    def get_all_component_detail(self, component_id=None, device_id=None,):
+        """Lấy danh sách tất cả component_device với phân trang và các tham số tùy chọn như component_id, device_id."""
         query = self.db.query(ComponentDeviceEntity)
 
         if component_id:
             query = query.filter(ComponentDeviceEntity.component_id == component_id)
-        if device_detail_id:
-            query = query.filter(ComponentDeviceEntity.device_detail_id == device_detail_id)
+        if device_id:
+            query = query.filter(ComponentDeviceEntity.device_id == device_id)
 
         total = query.count()
 

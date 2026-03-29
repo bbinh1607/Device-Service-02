@@ -23,7 +23,6 @@ def get_all_components():
     device_id = request.args.get("device_id")
     page = int(request.args.get("page", 1))
     limit = int(request.args.get("limit", 10))
-    print("controller 1")
     result = component_service.get_all_components(
         page=page,
         limit=limit,
@@ -31,7 +30,6 @@ def get_all_components():
         barcode=barcode,
         device_id=device_id
     )
-    print("controller 1")
     return api_response(data=result)
 
 @component_bp.route('/<id>', methods=['GET'])

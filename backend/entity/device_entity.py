@@ -7,7 +7,7 @@ class DeviceEntity(BaseEntity):
 
     name = Column(String, nullable=False,unique=True)
     description = Column(String, nullable=True)
-    image_url = Column(String, nullable=False)
+    image_url = Column(String, nullable=True)
     barcode = Column(String, nullable=True,unique=True)
     category_id = Column(String, ForeignKey('categorie.id'), nullable=False)
     

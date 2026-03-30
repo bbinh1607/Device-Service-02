@@ -24,8 +24,8 @@ def get_all():
     limit = int(request.args.get("limit", 10))
     name = request.args.get("name", "")
     create_at = request.args.get("createAt", None)
-
-    result = device_service.get_all_devices(page, limit, name=name, create_at=create_at)
+    category_id = request.args.get("category_id","")
+    result = device_service.get_all_devices(page, limit, name=name, create_at=create_at, category_id=category_id)
     return api_response(data=result)
 
 @device_bp.route("/<id>", methods=["PUT"])

@@ -29,8 +29,8 @@ class DeviceService:
         device = self.device_repository.get_device_by_id(id)
         return DeviceResponse().dump(device)
     
-    def get_all_devices(self, page=1, limit=100, name=None, create_at=None):
-        result, total = self.device_repository.get_all_devices(page, limit, name, create_at)
+    def get_all_devices(self, page=1, limit=100, name=None, create_at=None, category_id=None):
+        result, total = self.device_repository.get_all_devices(page, limit, name, create_at, category_id)
         results = DeviceResponse(many=True).dump(result)
         return pager(results=results, page=page, limit=limit, total=total)
 

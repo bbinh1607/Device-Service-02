@@ -17,12 +17,14 @@ class DeviceRepository:
         device_data = self.db.query(DeviceEntity).filter(DeviceEntity.id == device_id).first()
         return device_data
         
-    def get_all_devices(self, page, limit, name , create_at):
+    def get_all_devices(self, page, limit, name, create_at, category_id):
         query = self.db.query(DeviceEntity)
         if name:
             query = query.filter(DeviceEntity.name.ilike(f"%{name}%"))
         if create_at:
             query = query.filter(func.date(DeviceEntity.created_at) == create_at)
+        if category_id:
+            query = query.filter(DeviceEntity.category_id == category_id.strip())
         total = query.count()
         devices = query.offset((page - 1) * limit).limit(limit).all()
         return devices, total

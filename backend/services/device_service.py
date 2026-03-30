@@ -48,5 +48,5 @@ class DeviceService:
         if device is None:
             raise DeviceNotFound()
         device = self.device_repository.delete_device(id)
-        return DeviceResponse().dump(device)
+        return True
         

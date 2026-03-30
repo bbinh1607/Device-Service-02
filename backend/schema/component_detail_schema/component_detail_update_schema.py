@@ -10,7 +10,7 @@ class ComponentDetailUpdateSchema(BaseSchema):
     expirationDate = fields.DateTime()
     price = fields.Float()
     
-    Meta:
+    class Meta:
         fields = ('component_id', 'device_detail_id', 'buy_at', 'status', 'expirationDate', 'price')
         
     @post_load

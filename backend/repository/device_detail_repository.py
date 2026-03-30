@@ -1,7 +1,9 @@
 from sqlalchemy import func
 from backend.extensions import db
 from backend.entity.device_detail_entity import DeviceDetailEntity
+from backend.entity.component_detail_entity import ComponentDetailEntity
 from backend.utils.handle.hande_exception import handle_exceptions_repository_class
+from backend.entity.device_entity import DeviceEntity
 
 @handle_exceptions_repository_class
 class DeviceDetailRepository:
@@ -38,7 +40,8 @@ class DeviceDetailRepository:
         if component_id:
             query = query.join(ComponentDetailEntity, DeviceDetailEntity.id == ComponentDetailEntity.device_detail_id).filter(ComponentDetailEntity.component_id == component_id)
         if name:
-            query = query.filter(DeviceDetailEntity.device.name.ilike(f"%{name}%"))  # Sửa lỗi ở đây, query.DeviceEntity.name -> DeviceDetailEntity.device.name
+            
+            query = query.join(DeviceEntity, DeviceDetailEntity.device_id == DeviceEntity.id).filter(DeviceEntity.name.ilike(f"%{name}%"))
         if create_at:
             query = query.filter(func.date(DeviceDetailEntity.created_at) == create_at)
         if device_id:

@@ -10,3 +10,12 @@ class ComponentDetailUpdateSchema(BaseSchema):
     expirationDate = fields.DateTime()
     price = fields.Float()
     
+    Meta:
+        fields = ('component_id', 'device_detail_id', 'buy_at', 'status', 'expirationDate', 'price')
+        
+    @post_load
+    def to_component_detail_entity(self, data, **kwargs):
+        try:
+            return ComponentDetailEntity(**data)
+        except TypeError as e:
+            raise ValueError(f"Error converting data to ComponentDetailEntity: {e}")

@@ -28,9 +28,9 @@ class DeviceDetailService:
         device_detail_entity = self.device_detail_repository.delete_device_detail(id)
         return DeviceDetailResponse().dump(device_detail_entity)
     
-    def get_all_device_detail(self, page=1, limit=10, name=None, create_at=None, device_id=None, area=None, buy_at=None, warranty=None, status=None):
+    def get_all_device_detail(self, page=1, limit=10, name=None, create_at=None, device_id=None, area=None, buy_at=None, warranty=None, status=None, component_id=None):
         result, total = self.device_detail_repository.get_all_device_detail(
-            page, limit, name, create_at, device_id, area, buy_at, warranty, status
+            page, limit, name, create_at, device_id, area, buy_at, warranty, status, component_id
         )
         result_data = DeviceDetailResponse(many=True).dump(result)
         return pager(result_data, page, limit, total)

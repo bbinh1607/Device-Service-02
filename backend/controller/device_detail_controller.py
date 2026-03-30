@@ -32,6 +32,7 @@ def get_all_device_detail():
         buy_at=request.args.get("buyAt"),
         warranty=request.args.get("warranty"),
         status=request.args.get("status"),
+        component_id=request.args.get("component_id"),
     )
     return api_response(data=result)
 

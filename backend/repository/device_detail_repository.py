@@ -32,11 +32,13 @@ class DeviceDetailRepository:
         return device_detail_data
     
     
-    def get_all_device_detail(self, page, limit, name=None, create_at=None, device_id=None, area=None, buy_at=None, warranty=None, status=None):
+    def get_all_device_detail(self, page, limit, name=None, create_at=None, device_id=None, area=None, buy_at=None, warranty=None, status=None, component_id=None):
         query = self.db.query(DeviceDetailEntity)
 
+        if component_id:
+            query = query.join(ComponentDetailEntity, DeviceDetailEntity.id == ComponentDetailEntity.device_detail_id).filter(ComponentDetailEntity.component_id == component_id)
         if name:
-            query = query.filter(query.DeviceEntity.name.ilike(f"%{name}%"))
+            query = query.filter(DeviceDetailEntity.device.name.ilike(f"%{name}%"))  # Sửa lỗi ở đây, query.DeviceEntity.name -> DeviceDetailEntity.device.name
         if create_at:
             query = query.filter(func.date(DeviceDetailEntity.created_at) == create_at)
         if device_id:
